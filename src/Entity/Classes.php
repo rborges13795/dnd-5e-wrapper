@@ -1,9 +1,9 @@
 <?php
 namespace Dnd5eApi\Entity;
 
+use Dnd5eApi\Repository\Dnd5eRepository;
+use Dnd5eApi\Factory\ClassesFactory;
 use GuzzleHttp\Client;
-use App\Repository\Dnd5eRepository;
-use App\Factory\ClassesFactory;
 
 class Classes extends Dnd5eRepository
 {

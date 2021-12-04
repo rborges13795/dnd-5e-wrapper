@@ -2,8 +2,8 @@
 namespace Dnd5eApi\Entity;
 
 use GuzzleHttp\Client;
-use App\Repository\Dnd5eRepository;
-use App\Factory\RacesFactory;
+use Dnd5eApi\Repository\Dnd5eRepository;
+use Dnd5eApi\Factory\RacesFactory;
 
 class Races extends Dnd5eRepository
 {

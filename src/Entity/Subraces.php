@@ -1,9 +1,9 @@
 <?php
 namespace Dnd5eApi\Entity;
 
-use App\Repository\Dnd5eRepository;
+use Dnd5eApi\Repository\Dnd5eRepository;
 use GuzzleHttp\Client;
-use App\Factory\SubracesFactory;
+use Dnd5eApi\Factory\SubracesFactory;
 
 class Subraces extends Dnd5eRepository
 {

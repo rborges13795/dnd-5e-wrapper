@@ -2,8 +2,8 @@
 namespace Dnd5eApi\Entity;
 
 use GuzzleHttp\Client;
-use App\Repository\Dnd5eRepository;
-use App\Factory\EquipmentFactory;
+use Dnd5eApi\Repository\Dnd5eRepository;
+use Dnd5eApi\Factory\EquipmentFactory;
 /*
  * DIVIDE ARMOR AND WEAPON
  */

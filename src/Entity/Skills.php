@@ -2,8 +2,8 @@
 namespace Dnd5eApi\Entity;
 
 use GuzzleHttp\Client;
-use App\Repository\Dnd5eRepository;
-use App\Factory\SkillsFactory;
+use Dnd5eApi\Repository\Dnd5eRepository;
+use Dnd5eApi\Factory\SkillsFactory;
 
 class Skills extends Dnd5eRepository
 {
