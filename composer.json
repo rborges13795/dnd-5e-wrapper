@@ -1,4 +1,7 @@
 {
+	"name" : "rborges/dnd-5e-wrapper",
+	"description" : "A Dnd 5e PHP wrapper made with symfony",
+	"type" : "project",
 	"autoload" : {
 		"psr-4" : {
 			"Dnd5eApi\\" : "src/"
