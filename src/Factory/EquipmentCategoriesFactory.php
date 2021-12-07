@@ -11,6 +11,7 @@ class EquipmentCategoriesFactory
         
         $equipmentCategories
             ->setIndex($data['index'])
+            ->setName($data['name'])
             ->setEquipment($data['equipment']);
         
         return $equipmentCategories;

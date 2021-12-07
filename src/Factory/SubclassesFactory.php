@@ -11,6 +11,7 @@ class SubclassesFactory
         
         $subclasses
             ->setIndex($data['index'])
+            ->setName($data['name'])
             ->setClass($data['class'])
             ->setSubclassFlavor($data['subclass_flavor'])
             ->setDescription($data['desc'])

@@ -10,6 +10,8 @@ class SubracesFactory
         $subraces = new Subraces();
         
         $subraces
+            ->setIndex($data['index'])
+            ->setName($data['name'])
             ->setRace($data['race'])
             ->setDescription($data['desc'])
             ->setAbilityBonuses($data['ability_bonuses'])

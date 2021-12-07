@@ -11,6 +11,7 @@ class SpellsFactory
         
         $spells
             ->setIndex($data['index'])
+            ->setName($data['name'])
             ->setDescription($data['desc'])
             ->setRange($data['range'])
             ->setComponents($data['components'])

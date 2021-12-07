@@ -11,6 +11,7 @@ class EquipmentFactory
         
         $equipment
             ->setIndex($data['index'])
+            ->setName($data['name'])
             ->setEquipmentCategory($data['equipment_category'])
             ->setCost($data['cost'])
             ->setWeight($data['weight']);

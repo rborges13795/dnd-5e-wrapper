@@ -11,6 +11,7 @@ class RacesFactory
         
         $races
             ->setIndex($data['index'])
+            ->setName($data['name'])
             ->setSpeed($data['speed'])
             ->setAbilityBonuses($data['ability_bonuses'])
             ->setAlignment($data['alignment'])

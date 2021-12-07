@@ -11,6 +11,7 @@ class ProficienciesFactory
         
         $proficiencies
             ->setIndex($data['index'])
+            ->setName($data['name'])
             ->setType($data['type'])
             ->setClasses($data['classes'])
             ->setRaces($data['races']);

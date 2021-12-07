@@ -11,6 +11,7 @@ class AbilityScoresFactory
         
         $abilityScores
             ->setIndex($data['index'])
+            ->setName($data['name'])
             ->setFullName($data['full_name'])
             ->setDescription($data['desc'])
             ->setSkills($data['skills']);

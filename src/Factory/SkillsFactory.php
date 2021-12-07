@@ -11,6 +11,7 @@ class SkillsFactory
         
         $skills
             ->setIndex($data['index'])
+            ->setName($data['name'])
             ->setDescription($data['desc'])
             ->setAbilityScore($data['ability_score']);
         

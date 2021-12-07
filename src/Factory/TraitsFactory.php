@@ -11,6 +11,7 @@ class TraitsFactory
         
         $traits
             ->setIndex($data['index'])
+            ->setName($data['name'])
             ->setRaces($data['races'])
             ->setSubraces($data['subraces'])
             ->setDescription($data['desc'])
