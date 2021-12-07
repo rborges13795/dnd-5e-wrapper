@@ -6,10 +6,34 @@ use GuzzleHttp\Client;
 abstract class Dnd5eRepository
 {
     private string $uri = 'https://www.dnd5eapi.co/api/';
-    protected $client; 
+    protected $client;
+    protected string $name;
+    protected string $index;
     
     public function __construct() {
         $this->client = new Client(['base_uri' => $this->uri]);
+    }
+    
+    public function getIndex()
+    {
+        return $this->index;
+    }
+    
+    public function setIndex($index)
+    {
+        $this->index = $index;
+        return $this;
+    }
+    
+    public function getName()
+    {
+        return $this->name;
+    }
+    
+    public function setName($name)
+    {
+        $this->name = $name;
+        return $this;
     }
     
     public function get($uri = ''): array

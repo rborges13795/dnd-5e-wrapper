@@ -1,15 +1,14 @@
 <?php
 namespace Dnd5eApi\Entity;
 
+use GuzzleHttp\Client;
 use Dnd5eApi\Repository\Dnd5eRepository;
 use Dnd5eApi\Factory\ClassesFactory;
-use GuzzleHttp\Client;
 
 class Classes extends Dnd5eRepository
 {
 
     protected string $uri = 'https://www.dnd5eapi.co/api/classes/';
-    private string $index;
     private int $hitDie;
     private array $proficiencyChoices;
     private array $proficiencies;
@@ -35,17 +34,6 @@ class Classes extends Dnd5eRepository
     {
         $class = $this->factory;
         return $class->create($this->get(strtolower($index)));
-    }
-
-    public function getIndex()
-    {
-        return $this->index;
-    }
-
-    public function setIndex($index)
-    {
-        $this->index = $index;
-        return $this;
     }
     
     public function getHitDie()

@@ -7,9 +7,7 @@ use Dnd5eApi\Factory\AbilityScoresFactory;
 
 class AbilityScores extends Dnd5eRepository
 {
-
     protected string $uri = 'https://www.dnd5eapi.co/api/ability-scores/';
-    private string $index;
     private string $fullName;
     private array $description;
     private array $skills;
@@ -35,17 +33,6 @@ class AbilityScores extends Dnd5eRepository
         return strtoupper($this->all());
     }
 
-    public function getIndex()
-    {
-        return $this->index;
-    }
-
-    public function setIndex($index)
-    {
-        $this->index = $index;
-        return $this;
-    }
-    
     public function getFullName()
     {
         return $this->fullName;

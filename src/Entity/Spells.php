@@ -8,7 +8,6 @@ use Dnd5eApi\Factory\SpellsFactory;
 class Spells extends Dnd5eRepository
 {
     protected string $uri = 'https://www.dnd5eapi.co/api/spells/';
-    private string $index;
     protected SpellsFactory $factory;
     private array $description;
     private array $higherLevel;
@@ -33,17 +32,6 @@ class Spells extends Dnd5eRepository
     {
         $class = $this->factory;
         return $class->create($this->get(strtolower($index)));
-    }
-    
-    public function getIndex()
-    {
-        return $this->index;
-    }
-    
-    public function setIndex($index)
-    {
-        $this->index = $index;
-        return $this;
     }
     
     public function getDescription()

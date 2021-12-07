@@ -8,7 +8,6 @@ use Dnd5eApi\Factory\SubracesFactory;
 class Subraces extends Dnd5eRepository
 {
     protected string $uri = 'https://www.dnd5eapi.co/api/subraces/';
-    private string $index;
     private array $race;
     private string $description;
     private array $abilityBonuses;
@@ -27,17 +26,6 @@ class Subraces extends Dnd5eRepository
     {
         $class = $this->factory;
         return $class->create($this->get(strtolower($index)));
-    }
-    
-    public function getIndex()
-    {
-        return $this->index;
-    }
-    
-    public function setIndex($index)
-    {
-        $this->index = $index;
-        return $this;
     }
     
     public function Race()

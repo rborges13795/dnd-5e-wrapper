@@ -8,7 +8,6 @@ use Dnd5eApi\Factory\SkillsFactory;
 class Skills extends Dnd5eRepository
 {
     protected string $uri = 'https://www.dnd5eapi.co/api/skills/';
-    private string $index;
     private array $description;
     private array $abilityScore;
     protected SkillsFactory $factory;
@@ -22,17 +21,6 @@ class Skills extends Dnd5eRepository
     {
         $class = $this->factory;
         return $class->create($this->get(strtolower($index)));
-    }
-    
-    public function getIndex()
-    {
-        return $this->index;
-    }
-    
-    public function setIndex($index)
-    {
-        $this->index = $index;
-        return $this;
     }
     
     public function getDescription()

@@ -39,17 +39,6 @@ class Equipment extends Dnd5eRepository
         return $class->create($this->get(strtolower($index)));
     }
     
-    public function getIndex()
-    {
-        return $this->index;
-    }
-    
-    public function setIndex($index)
-    {
-        $this->index = $index;
-        return $this;
-    }
-    
     public function getEquipmentCategory()
     {
         return $this->equipmentCategory;
