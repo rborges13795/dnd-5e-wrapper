@@ -29,7 +29,7 @@ class Races extends Dnd5eRepository
 
     private array $languages;
 
-    private array $languageOptions;
+    private ?array $languageOptions = null;
 
     private string $languageDescription;
 
