@@ -25,7 +25,7 @@ class Races extends Dnd5eRepository
 
     private array $startingProficiencies;
 
-    private array $startingProficienciesOptions;
+    private ?array $startingProficienciesOptions = null;
 
     private array $languages;
 
