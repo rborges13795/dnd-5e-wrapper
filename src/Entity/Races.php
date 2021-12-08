@@ -192,7 +192,15 @@ class Races extends Dnd5eRepository
 
     public function setTraits($trait)
     {
-        $this->trait = $trait;
+        $traitClass = new Traits();
+        foreach ($trait as $value) {
+            $traitIndex = $value['index'];
+            $addTrait = $traitClass->$traitIndex();
+            $value['description'] = $addTrait->getDescription();
+            $newTrait[] = $value;
+        }
+        
+        $this->trait = $newTrait;
         return $this;
     }
 
