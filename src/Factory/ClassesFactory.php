@@ -13,6 +13,7 @@ class ClassesFactory
             ->setIndex($data['index'])
             ->setName($data['name'])
             ->setHitDie($data['hit_die'])
+            ->setProficiencies($data['proficiencies'])
             ->setProficiencyChoices($data['proficiency_choices'])
             ->setSavingThrows($data['saving_throws'])
             ->setStartingEquipment($data['starting_equipment'])
