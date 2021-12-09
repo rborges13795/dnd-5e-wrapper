@@ -15,7 +15,7 @@ class Classes extends Dnd5eRepository
     private array $savingThrows;
     private array $startingEquipment;
     private array $startingEquipmentOptions;
-    private array $classLevels;
+    private string $classLevels;
     private array $multiClassing;
     private array $subclasses;
     private array $spellcasting;
