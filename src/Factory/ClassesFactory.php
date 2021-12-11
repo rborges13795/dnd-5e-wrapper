@@ -34,7 +34,12 @@ class ClassesFactory
     
     protected function classSpells(Classes $class)
     {
-        $spells = $class->all($class->getUrl() . '/spells');
+        
+        $results = $class->get($class->getUrl() . '/spells');
+        foreach ($results['results'] as $value) {
+            $spells[] = $value;
+        }
+        
         $class->setSpells($spells);
         
         return $class;
