@@ -9,19 +9,25 @@ class ClassesFactory
     {
         $classes = new Classes();
 
-        $classes
-            ->setIndex($data['index'])
-            ->setName($data['name'])
-            ->setHitDie($data['hit_die'])
-            ->setProficiencies($data['proficiencies'])
-            ->setProficiencyChoices($data['proficiency_choices'])
-            ->setSavingThrows($data['saving_throws'])
-            ->setClassLevels($data['class_levels'])
-            ->setMultiClassing($data['multi_classing'])
-            ->setSubclasses($data['subclasses']);
+        $classes->setIndex($data['index'])
+        ->setName($data['name'])
+        ->setHitDie($data['hit_die'])
+        ->setProficiencyChoices($data['proficiency_choices'])
+        ->setProficiencies($data['proficiencies'])
+        ->setSavingThrows($data['saving_throws'])
+        ->setClassLevels($data['class_levels'])
+        ->setMultiClassing($data['multi_classing'])
+        ->setSubclasses($data['subclasses']);
         
         $classes = $this->classEquipment($classes);
-        $classes = $this->classSpells($classes);
+        
+        if (array_key_exists('spellcasting', $data)) {
+            $classes->setSpellcasting($data['spellcasting']);
+        }
+        
+        if (array_key_exists('spells', $data)) {
+            $classes = $this->classSpells($classes);
+        }
         
         return $classes;
     }
