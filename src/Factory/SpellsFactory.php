@@ -10,20 +10,29 @@ class SpellsFactory
         $spells = new Spells();
         
         $spells
-            ->setIndex($data['index'])
-            ->setName($data['name'])
-            ->setDescription($data['desc'])
-            ->setRange($data['range'])
-            ->setComponents($data['components'])
-            ->setMaterial($data['material'])
-            ->setRitual($data['ritual'])
-            ->setDuration($data['duration'])
-            ->setConcentration($data['concentration'])
-            ->setCastingTime($data['casting_time'])
-            ->setLevel($data['level'])
-            ->setAttackType($data['attack_type'])
-            ->setDamage($data['damage'])
-            ->setSchool($data['school']);
+        ->setIndex($data['index'])
+        ->setName($data['name'])
+        ->setDescription($data['desc'])
+        ->setRange($data['range'])
+        ->setComponents($data['components'])
+        ->setRitual($data['ritual'])
+        ->setDuration($data['duration'])
+        ->setConcentration($data['concentration'])
+        ->setCastingTime($data['casting_time'])
+        ->setLevel($data['level'])
+        ->setSchool($data['school']);
+        
+        if (array_key_exists('attack_type', $data)) {
+            $spells->setAttackType($data['attack_type']);
+        }
+        
+        if (array_key_exists('material', $data)) {
+            $spells->setMaterial($data['material']);
+        }
+        
+        if (array_key_exists('damage', $data)) {
+            $spells->setDamage($data['damage']);
+        }
         
         if (array_key_exists('higher_level', $data)) {
             $spells->setHigherLevel($data['higher_level']);

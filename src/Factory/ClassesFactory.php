@@ -21,8 +21,17 @@ class ClassesFactory
             ->setSubclasses($data['subclasses']);
         
         $classes = $this->classEquipment($classes);
+        $classes = $this->classSpells($classes);
         
         return $classes;
+    }
+    
+    protected function classSpells(Classes $class)
+    {
+        $spells = $class->all($class->getUrl() . '/spells');
+        $class->setSpells($spells);
+        
+        return $class;
     }
     
     //did this manually because the api's starting_equipment_options array is insane.

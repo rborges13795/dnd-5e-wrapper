@@ -18,7 +18,8 @@ class Classes extends Dnd5eRepository
     private string $classLevels;
     private array $multiClassing;
     private array $subclasses;
-    private array $spellcasting;
+    private ?array $spellcasting = null;
+    private ?array $spells = null;
     public ClassesFactory $factory;
 
     public function __construct()
@@ -146,10 +147,15 @@ class Classes extends Dnd5eRepository
         return $this;
     }
 
-    //use Spells class
     public function getSpells()
     {
-        ;
+        $this->spells;
+    }
+    
+    public function setSpells($spells)
+    {
+        $this->spells = $spells;
+        return $this;
     }
 
     public function getUrl()
