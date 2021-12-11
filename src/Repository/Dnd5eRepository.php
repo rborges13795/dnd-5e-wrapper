@@ -37,7 +37,7 @@ abstract class Dnd5eRepository
         return $this;
     }
     
-    protected function get($uri = ''): array
+    public function get($uri = ''): array
     {
         if (strpos($uri, '_')) {
             $uri = str_replace('_', '-', $uri);
