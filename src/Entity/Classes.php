@@ -149,7 +149,7 @@ class Classes extends Dnd5eRepository
 
     public function getSpells()
     {
-        $this->spells;
+        return $this->spells;
     }
     
     public function setSpells($spells)
