@@ -59,6 +59,15 @@ abstract class Dnd5eRepository
         return $response;
     }
     
+    public function allFirstCharUppercase($uri = ''): array
+    {
+        $results = $this->get($uri);
+        foreach ($results['results'] as $value) {
+            $response[] = $value['name'];
+        }
+        return $response;
+    }
+    
     public function __call($index, $args)
     {
         return $this->get($index);
