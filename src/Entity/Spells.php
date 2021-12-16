@@ -10,10 +10,10 @@ class Spells extends Dnd5eRepository
     protected string $uri = 'https://www.dnd5eapi.co/api/spells/';
     protected SpellsFactory $factory;
     private array $description;
-    private array $higherLevel;
+    private ?array $higherLevel = null;
     private string $range;
     private array $components;
-    private string $material;
+    private ?string $material = null;
     private bool $ritual;
     private string $duration;
     private bool $concentration;

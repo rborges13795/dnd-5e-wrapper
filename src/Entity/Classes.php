@@ -154,7 +154,33 @@ class Classes extends Dnd5eRepository
     
     public function setSpells($spells)
     {
-        $this->spells = $spells;
+        $spellClass = new Spells();
+        $newSpell = [];
+        foreach ($spells as $value) {
+            $spellIndex = $value['index'];
+            $addSpell = $spellClass->$spellIndex();
+            if ($addSpell->getLevel() >= 2) {
+                break;
+            }
+            $value['description'] = $addSpell->getDescription();
+            $value['level'] = $addSpell->getLevel();
+            $value['castingTime'] = $addSpell->getCastingTime();
+            $value['duration'] = $addSpell->getDuration();
+            $value['components'] = $addSpell->getComponents();
+            $value['range'] = $addSpell->getRange();
+            $value['concentration'] = $addSpell->getConcentration();
+            $value['ritual'] = $addSpell->getRitual();
+            $value['school'] = $addSpell->getSchool();
+            if ($addSpell->getMaterial() !== null) {
+                $value['material'] = $addSpell->getMaterial();
+            }
+            if ($addSpell->getHigherLevel() !== null) {
+                $value['higherLevel'] = $addSpell->getHigherLevel();
+            }
+            $newSpell[] = $value;
+        }
+        
+        $this->spells = $newSpell;
         return $this;
     }
 
