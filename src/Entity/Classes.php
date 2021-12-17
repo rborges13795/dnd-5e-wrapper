@@ -143,6 +143,40 @@ class Classes extends Dnd5eRepository
 
     public function setSpellcasting($spellcasting)
     {
+        if ($this->getIndex() == 'bard') {
+            $spellcasting['cantripsKnown'] = 2;
+            $spellcasting['spellsKnown'] = 4;
+            $spellcasting['spellSlots'] = 2;
+        }
+        
+        if ($this->getIndex() == 'cleric') {
+            $spellcasting['cantripsKnown'] = 3;
+            $spellcasting['spellSlots'] = 2;
+        }
+        
+        if ($this->getIndex() == 'druid') {
+            $spellcasting['cantripsKnown'] = 2;
+            $spellcasting['spellSlots'] = 2;
+        }
+        
+        if ($this->getIndex() == 'sorcerer') {
+            $spellcasting['cantripsKnown'] = 4;
+            $spellcasting['spellsKnown'] = 2;
+            $spellcasting['spellSlots'] = 2;
+        }
+        
+        if ($this->getIndex() == 'warlock') {
+            $spellcasting['cantripsKnown'] = 2;
+            $spellcasting['spellsKnown'] = 2;
+            $spellcasting['spellSlots'] = 1;
+        }
+        
+        if ($this->getIndex() == 'wizard') {
+            $spellcasting['cantripsKnown'] = 3;
+            $spellcasting['spellsKnown'] = 6;
+            $spellcasting['spellSlots'] = 2;
+        }
+        
         $this->spellcasting = $spellcasting;
         return $this;
     }
