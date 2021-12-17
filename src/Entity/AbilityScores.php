@@ -28,11 +28,6 @@ class AbilityScores extends Dnd5eRepository
         return $class->create($this->get(strtolower($index)));
     }
     
-    public function all(): array
-    {
-        return strtoupper($this->all());
-    }
-
     public function getFullName()
     {
         return $this->fullName;
