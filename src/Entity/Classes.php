@@ -138,59 +138,62 @@ class Classes extends Dnd5eRepository
 
     public function getSpellcasting()
     {
+        $completeSpellcasting = $this->spellcasting;
+        
+        if ($this->getIndex() == 'bard') {
+            $completeSpellcasting['cantripsKnown'] = 2;
+            $completeSpellcasting['spellsKnown'] = 4;
+            $completeSpellcasting['spellSlots'] = 2;
+        }
+        
+        if ($this->getIndex() == 'cleric') {
+            $completeSpellcasting['cantripsKnown'] = 3;
+            $completeSpellcasting['spellSlots'] = 2;
+        }
+        
+        if ($this->getIndex() == 'druid') {
+            $completeSpellcasting['cantripsKnown'] = 2;
+            $completeSpellcasting['spellSlots'] = 2;
+        }
+        
+        if ($this->getIndex() == 'sorcerer') {
+            $completeSpellcasting['cantripsKnown'] = 4;
+            $completeSpellcasting['spellsKnown'] = 2;
+            $completeSpellcasting['spellSlots'] = 2;
+        }
+        
+        if ($this->getIndex() == 'warlock') {
+            $completeSpellcasting['cantripsKnown'] = 2;
+            $completeSpellcasting['spellsKnown'] = 2;
+            $completeSpellcasting['spellSlots'] = 1;
+        }
+        
+        if ($this->getIndex() == 'wizard') {
+            $completeSpellcasting['cantripsKnown'] = 3;
+            $completeSpellcasting['spellsKnown'] = 6;
+            $completeSpellcasting['spellSlots'] = 2;
+        }
+        
+        return $completeSpellcasting;
+    }
+    
+    public function getSimpleSpellcasting()
+    {
         return $this->spellcasting;
     }
 
     public function setSpellcasting($spellcasting)
     {
-        if ($this->getIndex() == 'bard') {
-            $spellcasting['cantripsKnown'] = 2;
-            $spellcasting['spellsKnown'] = 4;
-            $spellcasting['spellSlots'] = 2;
-        }
-        
-        if ($this->getIndex() == 'cleric') {
-            $spellcasting['cantripsKnown'] = 3;
-            $spellcasting['spellSlots'] = 2;
-        }
-        
-        if ($this->getIndex() == 'druid') {
-            $spellcasting['cantripsKnown'] = 2;
-            $spellcasting['spellSlots'] = 2;
-        }
-        
-        if ($this->getIndex() == 'sorcerer') {
-            $spellcasting['cantripsKnown'] = 4;
-            $spellcasting['spellsKnown'] = 2;
-            $spellcasting['spellSlots'] = 2;
-        }
-        
-        if ($this->getIndex() == 'warlock') {
-            $spellcasting['cantripsKnown'] = 2;
-            $spellcasting['spellsKnown'] = 2;
-            $spellcasting['spellSlots'] = 1;
-        }
-        
-        if ($this->getIndex() == 'wizard') {
-            $spellcasting['cantripsKnown'] = 3;
-            $spellcasting['spellsKnown'] = 6;
-            $spellcasting['spellSlots'] = 2;
-        }
-        
         $this->spellcasting = $spellcasting;
         return $this;
     }
 
     public function getSpells()
     {
-        return $this->spells;
-    }
-    
-    public function setSpells($spells)
-    {
+        $completeSpells = $this->spells;
         $spellClass = new Spells();
         $newSpell = [];
-        foreach ($spells as $value) {
+        foreach ($completeSpells as $value) {
             $spellIndex = $value['index'];
             $addSpell = $spellClass->$spellIndex();
             if ($addSpell->getLevel() >= 2) {
@@ -213,8 +216,17 @@ class Classes extends Dnd5eRepository
             }
             $newSpell[] = $value;
         }
-        
-        $this->spells = $newSpell;
+        return $newSpell;
+    }
+    
+    public function getSimpleSpells()
+    {
+        return $this->spells;
+    }
+    
+    public function setSpells($spells)
+    {
+        $this->spells = $spells;
         return $this;
     }
 
