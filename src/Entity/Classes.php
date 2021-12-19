@@ -145,14 +145,16 @@ class Classes extends Dnd5eRepository
             $completeSpellcasting['spellsKnown'] = 4;
             $completeSpellcasting['spellSlots'] = 2;
         }
-        
+        //spells known = cleric level + Wisdom modifier (minimum of 1)
         if ($this->getIndex() == 'cleric') {
             $completeSpellcasting['cantripsKnown'] = 3;
+            $completeSpellcasting['spellsKnown'] = 1;
             $completeSpellcasting['spellSlots'] = 2;
         }
-        
+        //spells known = druid level + Wisdom modifier (minimum of 1)
         if ($this->getIndex() == 'druid') {
             $completeSpellcasting['cantripsKnown'] = 2;
+            $completeSpellcasting['spellsKnown'] = 1;
             $completeSpellcasting['spellSlots'] = 2;
         }
         
