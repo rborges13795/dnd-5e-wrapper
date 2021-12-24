@@ -187,14 +187,10 @@ class Races extends Dnd5eRepository
 
     public function getTraits()
     {
-        return $this->trait;
-    }
-
-    public function setTraits($trait)
-    {
+        $oldTrait = $this->trait;
         $traitClass = new Traits();
         $newTrait = [];
-        foreach ($trait as $value) {
+        foreach ($oldTrait as $value) {
             $traitIndex = $value['index'];
             $addTrait = $traitClass->$traitIndex();
             $value['description'] = $addTrait->getDescription();
@@ -202,6 +198,15 @@ class Races extends Dnd5eRepository
         }
         
         $this->trait = $newTrait;
+    }
+    
+    public function getSimpleTraits()
+    {
+        return $this->trait;
+    }
+
+    public function setTraits($trait)
+    {
         return $this;
     }
 
