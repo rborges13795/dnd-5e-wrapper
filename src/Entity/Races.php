@@ -207,6 +207,7 @@ class Races extends Dnd5eRepository
 
     public function setTraits($trait)
     {
+        $this->trait = $trait;
         return $this;
     }
 
