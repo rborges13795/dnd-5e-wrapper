@@ -198,6 +198,7 @@ class Races extends Dnd5eRepository
         }
         
         $this->trait = $newTrait;
+        return $newTrait;
     }
     
     public function getSimpleTraits()
