@@ -139,6 +139,9 @@ class Classes extends Dnd5eRepository
     public function getSpellcasting()
     {
         $completeSpellcasting = $this->spellcasting;
+        if ($completeSpellcasting == null) {
+            return $completeSpellcasting;
+        }
         
         if ($this->getIndex() == 'bard') {
             $completeSpellcasting['cantripsKnown'] = 2;
@@ -193,6 +196,9 @@ class Classes extends Dnd5eRepository
     public function getSpells()
     {
         $completeSpells = $this->spells;
+        if ($completeSpells == null) {
+            return $completeSpells;
+        }
         $spellClass = new Spells();
         $newSpell = [];
         foreach ($completeSpells as $value) {
