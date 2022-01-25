@@ -4,8 +4,8 @@ You can clone the repository to a path of your choice or install via composer.
 ```
 composer require rborges/dnd-5e-wrapper``
 ```
-### Usage
-## There are 12 entities total including these ones
+## Usage
+### There are 12 entities total including these ones
 ```
 use Dnd5eApi\DndApi;
 
