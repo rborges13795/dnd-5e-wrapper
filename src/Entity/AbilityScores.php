@@ -6,7 +6,7 @@ use Dnd5eApi\Factory\AbilityScoresFactory;
 
 class AbilityScores
 {
-    protected string $uri = 'https://www.dnd5eapi.co/api/ability-scores/';
+    private string $uri = 'https://www.dnd5eapi.co/api/ability-scores/';
     private string $fullName;
     private array $description;
     private array $skills;
