@@ -28,9 +28,29 @@ trait GetNameIndexAndUrlTrait
         return $this;
     }
     
-    public function getUrl()
+    public function getUrl(): string
     {
-        return $this->uri . $this->getIndex();
+        try {
+            $this->index;
+        } catch (\Error $e) {
+            return $this->uri;
+        }
+        return $this->uri . $this->index;
+    }
+    
+    public function getUri(): string
+    {
+        return $this->uri;
+    }
+    
+    public function all(): array
+    {
+        return $this->repository->all($this->uri);
+    }
+    
+    public function allFirstCharUppercase($uri = ''): array
+    {
+        return $this->repository->allFirstCharUppercase();
     }
     
 }
