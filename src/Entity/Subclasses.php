@@ -13,6 +13,7 @@ class Subclasses extends Dnd5eRepository
     private array $description;
     private string $subclassLevels;
     protected SubclassesFactory $factory;
+    use GetNameIndexAndUrlTrait;
     
     public function __construct() {
         $this->client = new Client(['base_uri' => $this->uri]);

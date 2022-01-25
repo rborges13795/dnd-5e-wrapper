@@ -1,14 +1,12 @@
 <?php
 namespace Dnd5eApi\Entity;
 
-use GuzzleHttp\Client;
 use Dnd5eApi\Repository\Dnd5eRepository;
 use Dnd5eApi\Factory\SpellsFactory;
 
-class Spells extends Dnd5eRepository
+class Spells
 {
-    protected string $uri = 'https://www.dnd5eapi.co/api/spells/';
-    protected SpellsFactory $factory;
+    private string $uri = 'https://www.dnd5eapi.co/api/spells/';
     private array $description;
     private ?array $higherLevel = null;
     private string $range;
@@ -22,16 +20,20 @@ class Spells extends Dnd5eRepository
     private string $attackType;
     private array $damage;
     private array $school;
+    private SpellsFactory $factory;
+    private Dnd5eRepository $repository;
+    use GetNameIndexAndUrlTrait;
     
-    public function __construct() {
-        $this->client = new Client(['base_uri' => $this->uri]);
+    public function __construct()
+    {
+        $this->repository = new Dnd5eRepository($this->uri);
         $this->factory = new SpellsFactory();
     }
     
     public function __call($index, $args)
     {
         $class = $this->factory;
-        return $class->create($this->get(strtolower($index)));
+        return $class->create($this->repository->get(strtolower($index)));
     }
     
     public function getDescription()

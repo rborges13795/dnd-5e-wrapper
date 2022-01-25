@@ -1,56 +1,40 @@
 <?php
 namespace Dnd5eApi\Entity;
 
-use GuzzleHttp\Client;
 use Dnd5eApi\Repository\Dnd5eRepository;
 use Dnd5eApi\Factory\RacesFactory;
 
-class Races extends Dnd5eRepository
+class Races
 {
-    protected string $uri = 'https://www.dnd5eapi.co/api/races/';
-
+    private string $uri = 'https://www.dnd5eapi.co/api/races/';
     private string $speed;
-
     private array $abilityBonuses;
-
     private array $abilityBonusOptions;
-
     private string $alignment;
-
     private string $age;
-
     private string $size;
-
     private string $sizeDescription;
-
     private array $startingProficiencies;
-
     private ?array $startingProficienciesOptions = null;
-
     private array $languages;
-
     private ?array $languageOptions = null;
-
     private string $languageDescription;
-
     private array $trait;
-
     private array $subraces;
-
-    protected RacesFactory $factory;
+    private RacesFactory $factory;
+    private Dnd5eRepository $repository;
+    use GetNameIndexAndUrlTrait;
 
     public function __construct()
     {
-        $this->client = new Client([
-            'base_uri' => $this->uri
-        ]);
+        $this->repository = new Dnd5eRepository($this->uri);
         $this->factory = new RacesFactory();
     }
 
     public function __call($index, $args)
     {
         $class = $this->factory;
-        return $class->create($this->get(strtolower($index)));
+        return $class->create($this->repository->get(strtolower($index)));
     }
 
     public function getSpeed()

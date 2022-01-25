@@ -2,6 +2,7 @@
 namespace Dnd5eApi\Factory;
 
 use Dnd5eApi\Entity\Classes;
+use Dnd5eApi\Repository\Dnd5eRepository;
 
 class ClassesFactory
 {
@@ -32,10 +33,10 @@ class ClassesFactory
         return $classes;
     }
     
-    protected function classSpells(Classes $class)
+    private function classSpells(Classes $class)
     {
-        
-        $results = $class->get($class->getUrl() . '/spells');
+        $repository = new Dnd5eRepository();
+        $results = $repository->get($class->getUrl() . '/spells');
         foreach ($results['results'] as $value) {
             $spells[] = $value;
         }
@@ -46,7 +47,7 @@ class ClassesFactory
     }
     
     //did this manually because the api's starting_equipment_options array is insane.
-    protected function classEquipment(Classes $class)
+    private function classEquipment(Classes $class)
     {
         if ($class->getIndex() == 'barbarian') {
             $class->setStartingEquipmentOptions([

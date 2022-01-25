@@ -2,12 +2,11 @@
 namespace Dnd5eApi\Entity;
 
 use Dnd5eApi\Repository\Dnd5eRepository;
-use GuzzleHttp\Client;
 use Dnd5eApi\Factory\SubracesFactory;
 
-class Subraces extends Dnd5eRepository
+class Subraces
 {
-    protected string $uri = 'https://www.dnd5eapi.co/api/subraces/';
+    private string $uri = 'https://www.dnd5eapi.co/api/subraces/';
     private array $race;
     private string $description;
     private array $abilityBonuses;
@@ -15,17 +14,20 @@ class Subraces extends Dnd5eRepository
     private array $languages;
     private array $languageOptions;
     private array $racialTraits;
-    protected SubracesFactory $factory;
+    private SubracesFactory $factory;
+    private Dnd5eRepository $repository;
+    use GetNameIndexAndUrlTrait;
     
-    public function __construct() {
-        $this->client = new Client(['base_uri' => $this->uri]);
+    public function __construct() 
+    {
+        $this->repository = new Dnd5eRepository($this->uri);
         $this->factory = new SubracesFactory();
     }
     
     public function __call($index, $args)
     {
         $class = $this->factory;
-        return $class->create($this->get(strtolower($index)));
+        return $class->create($this->repository->get(strtolower($index)));
     }
     
     public function Race()

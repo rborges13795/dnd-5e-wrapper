@@ -1,26 +1,27 @@
 <?php
 namespace Dnd5eApi\Entity;
 
-use GuzzleHttp\Client;
 use Dnd5eApi\Repository\Dnd5eRepository;
 use Dnd5eApi\Factory\EquipmentCategoriesFactory;
 
-class EquipmentCategories extends Dnd5eRepository
+class EquipmentCategories
 {
-    protected string $uri = 'https://www.dnd5eapi.co/api/equipment-categories/';
+    private string $uri = 'https://www.dnd5eapi.co/api/equipment-categories/';
     private string $index;
     private array $equipment;
-    protected EquipmentCategoriesFactory $factory;
+    private EquipmentCategoriesFactory $factory;
+    private Dnd5eRepository $repository;
+    use GetNameIndexAndUrlTrait;
     
     public function __construct() {
-        $this->client = new Client(['base_uri' => $this->uri]);
+        $this->repository = new Dnd5eRepository($this->uri);
         $this->factory = new EquipmentCategoriesFactory();
     }
     
     public function __call($index, $args)
     {
         $class = $this->factory;
-        return $class->create($this->get(strtolower($index)));
+        return $class->create($this->repository->get(strtolower($index)));
     }
     
     public function getEquipment()
@@ -32,11 +33,6 @@ class EquipmentCategories extends Dnd5eRepository
     {
         $this->equipment = $equipment;
         return $this;
-    }
-    
-    public function getUrl()
-    {
-        return $this->uri . $this->getIndex();
     }
     
 }

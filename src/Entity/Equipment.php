@@ -1,15 +1,14 @@
 <?php
 namespace Dnd5eApi\Entity;
 
-use GuzzleHttp\Client;
 use Dnd5eApi\Repository\Dnd5eRepository;
 use Dnd5eApi\Factory\EquipmentFactory;
 /*
  * DIVIDE ARMOR AND WEAPON
  */
-class Equipment extends Dnd5eRepository
+class Equipment
 {
-    protected string $uri = 'https://www.dnd5eapi.co/api/equipment/';
+    private string $uri = 'https://www.dnd5eapi.co/api/equipment/';
     private string $index;
     private array $equipmentCategory;
     private array $gearCategory;
@@ -26,17 +25,19 @@ class Equipment extends Dnd5eRepository
     private bool $stealthDisadvantage;
     private array $cost;
     private int $weight;
-    protected EquipmentFactory $factory; 
+    private EquipmentFactory $factory;
+    private Dnd5eRepository $repository;
+    use GetNameIndexAndUrlTrait;
     
     public function __construct() {
-        $this->client = new Client(['base_uri' => $this->uri]);
+        $this->repository = new Dnd5eRepository($this->uri);
         $this->factory = new EquipmentFactory();
     }
     
     public function __call($index, $args)
     {
         $class = $this->factory;
-        return $class->create($this->get(strtolower($index)));
+        return $class->create($this->repository->get(strtolower($index)));
     }
     
     public function getEquipmentCategory()
@@ -202,11 +203,6 @@ class Equipment extends Dnd5eRepository
     {
         $this->weight = $weight;
         return $this;
-    }
-    
-    public function getUrl()
-    {
-        return $this->uri . $this->getIndex();
     }
     
 }

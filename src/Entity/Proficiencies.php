@@ -2,36 +2,30 @@
 namespace Dnd5eApi\Entity;
 
 use Dnd5eApi\Repository\Dnd5eRepository;
-use GuzzleHttp\Client;
 use Dnd5eApi\Factory\ProficienciesFactory;
 
-class Proficiencies extends Dnd5eRepository
+class Proficiencies
 {
 
-    protected string $uri = 'https://www.dnd5eapi.co/api/proficiencies/';
-
+    private string $uri = 'https://www.dnd5eapi.co/api/proficiencies/';
     private string $index;
-
     private string $type;
-
     private array $classes;
-
     private array $races;
-
-    protected ProficienciesFactory $factory;
+    private ProficienciesFactory $factory;
+    private Dnd5eRepository $repository;
+    use GetNameIndexAndUrlTrait;
 
     public function __construct()
     {
-        $this->client = new Client([
-            'base_uri' => $this->uri
-        ]);
+        $this->repository = new Dnd5eRepository($this->uri);
         $this->factory = new ProficienciesFactory();
     }
     
     public function __call($index, $args)
     {
         $class = $this->factory;
-        return $class->create($this->get(strtolower($index)));
+        return $class->create($this->repository->get(strtolower($index)));
     }
 
     public function getType()

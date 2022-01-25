@@ -4,37 +4,12 @@ namespace Dnd5eApi\Repository;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\ClientException;
 
-abstract class Dnd5eRepository
+class Dnd5eRepository
 {
-    private string $uri = 'https://www.dnd5eapi.co/api/';
-    protected $client;
-    protected string $name;
-    protected string $index;
+    private $client;
     
-    public function __construct() {
-        $this->client = new Client(['base_uri' => $this->uri]);
-    }
-    
-    public function getIndex()
-    {
-        return $this->index;
-    }
-    
-    public function setIndex($index)
-    {
-        $this->index = $index;
-        return $this;
-    }
-    
-    public function getName()
-    {
-        return $this->name;
-    }
-    
-    public function setName($name)
-    {
-        $this->name = $name;
-        return $this;
+    public function __construct(string $uri = 'https://www.dnd5eapi.co/api/') {
+        $this->client = new Client(['base_uri' => $uri]);
     }
     
     public function get($uri = ''): array
@@ -68,9 +43,5 @@ abstract class Dnd5eRepository
         return $response;
     }
     
-    public function __call($index, $args)
-    {
-        return $this->get($index);
-    }
 }
 
