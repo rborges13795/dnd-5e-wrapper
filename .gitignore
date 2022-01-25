@@ -1,5 +1,8 @@
 /vendor/
 /.settings
+/settings
+/project
+/classpath
 /.project
 /.classpath
 /testing.php
