@@ -21,6 +21,12 @@ $race = $dnd->races();
 $dwarf = $race->dwarf();
 $dwarfStartingProficencies = $dwarf->getStartingProficiencies();
 ```
+
+## Tests
+To test the data simply use
+```
+composer test
+```
 ## The Data
 This app uses the 'Dungeons and Dragons 5th Edition REST API v1' api as the source of the data used. You can find it [here](https://www.programmableweb.com/api/dungeons-and-dragons-5th-edition-rest-api-v1).
 ## Requirements
