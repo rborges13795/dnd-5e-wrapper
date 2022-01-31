@@ -23,7 +23,7 @@ $dwarfStartingProficencies = $dwarf->getStartingProficiencies();
 ```
 
 ## Tests
-To test the data simply use
+To test the app simply use
 ```
 composer test
 ```
