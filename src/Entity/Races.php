@@ -6,22 +6,39 @@ use Dnd5eApi\Factory\RacesFactory;
 
 class Races
 {
+
     private string $uri = 'https://www.dnd5eapi.co/api/races/';
+
     private string $speed;
+
     private array $abilityBonuses;
-    private array $abilityBonusOptions;
+
+    private array $abilityBonusOptions = [];
+
     private string $alignment;
+
     private string $age;
+
     private string $size;
+
     private string $sizeDescription;
-    private array $startingProficiencies;
-    private ?array $startingProficienciesOptions = null;
+
+    private array $startingProficiencies = [];
+
+    private array $startingProficienciesOptions = [];
+
     private array $languages;
-    private ?array $languageOptions = null;
+
+    private array $languageOptions = [];
+
     private string $languageDescription;
+
     private array $trait;
-    private array $subraces;
+
+    private array $subraces = [];
+
     private RacesFactory $factory;
+
     private Dnd5eRepository $repository;
     use GetNameIndexAndUrlTrait;
 
@@ -33,11 +50,11 @@ class Races
 
     public function __call($index, $args)
     {
-        $class = $this->factory;
-        return $class->create($this->repository->get(strtolower($index)));
+        $entityFactory = $this->factory;
+        return $entityFactory->create($this->repository->get(strtolower($index)));
     }
 
-    public function getSpeed()
+    public function getSpeed(): string
     {
         return $this->speed;
     }
@@ -48,7 +65,7 @@ class Races
         return $this;
     }
 
-    public function getAbilityBonuses()
+    public function getAbilityBonuses(): array
     {
         return $this->abilityBonuses;
     }
@@ -59,7 +76,7 @@ class Races
         return $this;
     }
 
-    public function getAbilityBonusOptions()
+    public function getAbilityBonusOptions(): array
     {
         return $this->abilityBonusOptions;
     }
@@ -70,7 +87,7 @@ class Races
         return $this;
     }
 
-    public function getAlignment()
+    public function getAlignment(): string
     {
         return $this->alignment;
     }
@@ -81,7 +98,7 @@ class Races
         return $this;
     }
 
-    public function getAge()
+    public function getAge(): string
     {
         return $this->age;
     }
@@ -92,7 +109,7 @@ class Races
         return $this;
     }
 
-    public function getSize()
+    public function getSize(): string
     {
         return $this->size;
     }
@@ -103,7 +120,7 @@ class Races
         return $this;
     }
 
-    public function getSizeDescription()
+    public function getSizeDescription(): string
     {
         return $this->sizeDescription;
     }
@@ -114,7 +131,7 @@ class Races
         return $this;
     }
 
-    public function getStartingProficiencies()
+    public function getStartingProficiencies(): array
     {
         return $this->startingProficiencies;
     }
@@ -125,7 +142,7 @@ class Races
         return $this;
     }
 
-    public function getStartingProficiencyOptions()
+    public function getStartingProficiencyOptions(): array
     {
         return $this->startingProficienciesOptions;
     }
@@ -136,7 +153,7 @@ class Races
         return $this;
     }
 
-    public function getLanguages()
+    public function getLanguages(): array
     {
         return $this->languages;
     }
@@ -147,7 +164,7 @@ class Races
         return $this;
     }
 
-    public function getLanguageOptions()
+    public function getLanguageOptions(): array
     {
         return $this->languageOptions;
     }
@@ -158,7 +175,7 @@ class Races
         return $this;
     }
 
-    public function getLanguageDescription()
+    public function getLanguageDescription(): string
     {
         return $this->languageDescription;
     }
@@ -169,7 +186,7 @@ class Races
         return $this;
     }
 
-    public function getTraits()
+    public function getTraits(): array
     {
         $oldTrait = $this->trait;
         $traitClass = new Traits();
@@ -180,12 +197,12 @@ class Races
             $value['description'] = $addTrait->getDescription();
             $newTrait[] = $value;
         }
-        
+
         $this->trait = $newTrait;
         return $newTrait;
     }
-    
-    public function getSimpleTraits()
+
+    public function getSimpleTraits(): array
     {
         return $this->trait;
     }
@@ -196,7 +213,7 @@ class Races
         return $this;
     }
 
-    public function getSubraces()
+    public function getSubraces(): array
     {
         return $this->subraces;
     }
@@ -207,8 +224,4 @@ class Races
         return $this;
     }
 
-    public function getUrl()
-    {
-        return $this->uri . $this->getIndex();
-    }
 }

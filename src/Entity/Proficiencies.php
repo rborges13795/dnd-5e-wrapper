@@ -8,11 +8,17 @@ class Proficiencies
 {
 
     private string $uri = 'https://www.dnd5eapi.co/api/proficiencies/';
+
     private string $index;
+
     private string $type;
+
     private array $classes;
+
     private array $races;
+
     private ProficienciesFactory $factory;
+
     private Dnd5eRepository $repository;
     use GetNameIndexAndUrlTrait;
 
@@ -21,14 +27,14 @@ class Proficiencies
         $this->repository = new Dnd5eRepository($this->uri);
         $this->factory = new ProficienciesFactory();
     }
-    
+
     public function __call($index, $args)
     {
-        $class = $this->factory;
-        return $class->create($this->repository->get(strtolower($index)));
+        $entityFactory = $this->factory;
+        return $entityFactory->create($this->repository->get(strtolower($index)));
     }
 
-    public function getType()
+    public function getType(): string
     {
         return $this->type;
     }
@@ -39,7 +45,7 @@ class Proficiencies
         return $this;
     }
 
-    public function getClasses()
+    public function getClasses(): array
     {
         return $this->classes;
     }
@@ -50,7 +56,7 @@ class Proficiencies
         return $this;
     }
 
-    public function getRaces()
+    public function getRaces(): array
     {
         return $this->races;
     }
@@ -61,8 +67,4 @@ class Proficiencies
         return $this;
     }
 
-    public function getUrl()
-    {
-        return $this->uri . $this->getIndex();
-    }
 }

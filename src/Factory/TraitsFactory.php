@@ -5,18 +5,18 @@ use Dnd5eApi\Entity\Traits;
 
 class TraitsFactory
 {
+
     public function create(array $data): Traits
     {
         $traits = new Traits();
-        
-        $traits
-            ->setIndex($data['index'])
+
+        $traits->setIndex($data['index'])
             ->setName($data['name'])
             ->setRaces($data['races'])
             ->setSubraces($data['subraces'])
             ->setDescription($data['desc'])
             ->setProficiencies($data['proficiencies']);
-        
+
         return $traits;
     }
 }

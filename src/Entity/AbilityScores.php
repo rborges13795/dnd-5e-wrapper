@@ -6,11 +6,17 @@ use Dnd5eApi\Factory\AbilityScoresFactory;
 
 class AbilityScores
 {
+
     private string $uri = 'https://www.dnd5eapi.co/api/ability-scores/';
+
     private string $fullName;
+
     private array $description;
+
     private array $skills;
+
     private AbilityScoresFactory $factory;
+
     private Dnd5eRepository $repository;
     use GetNameIndexAndUrlTrait;
 
@@ -22,15 +28,15 @@ class AbilityScores
 
     public function __call($index, $args)
     {
-        $class = $this->factory;
-        return $class->create($this->repository->get(strtolower($index)));
+        $entityFactory = $this->factory;
+        return $entityFactory->create($this->repository->get(strtolower($index)));
     }
-    
+
     public function getFullName()
     {
         return $this->fullName;
     }
-    
+
     public function setFullName($fullName)
     {
         $this->fullName = $fullName;
@@ -58,6 +64,5 @@ class AbilityScores
         $this->skills = $skills;
         return $this;
     }
-    
 }
 

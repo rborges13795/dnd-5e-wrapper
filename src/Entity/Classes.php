@@ -8,18 +8,31 @@ class Classes
 {
 
     private string $uri = 'https://www.dnd5eapi.co/api/classes/';
-    private int $hitDie;
+
+    private string $hitDie;
+
     private array $proficiencyChoices;
+
     private array $proficiencies;
+
     private array $savingThrows;
+
     private array $startingEquipment;
+
     private array $startingEquipmentOptions;
+
     private string $classLevels;
+
     private array $multiClassing;
+
     private array $subclasses;
-    private ?array $spellcasting = null;
-    private ?array $spells = null;
+
+    private array $spellcasting = [];
+
+    private array $spells = [];
+
     private ClassesFactory $factory;
+
     private Dnd5eRepository $repository;
     use GetNameIndexAndUrlTrait;
 
@@ -31,22 +44,22 @@ class Classes
 
     public function __call($index, $args)
     {
-        $class = $this->factory;
-        return $class->create($this->repository->get(strtolower($index)));
+        $entityFactory = $this->factory;
+        return $entityFactory->create($this->repository->get(strtolower($index)));
     }
-    
-    public function getHitDie()
+
+    public function getHitDie(): string
     {
         return $this->hitDie;
     }
-    
+
     public function setHitDie($hitDie)
     {
         $this->hitDie = $hitDie;
         return $this;
     }
 
-    public function getProficiencyChoices()
+    public function getProficiencyChoices(): array
     {
         return $this->proficiencyChoices;
     }
@@ -57,7 +70,7 @@ class Classes
         return $this;
     }
 
-    public function getProficiencies()
+    public function getProficiencies(): array
     {
         return $this->proficiencies;
     }
@@ -68,7 +81,7 @@ class Classes
         return $this;
     }
 
-    public function getSavingThrows()
+    public function getSavingThrows(): array
     {
         return $this->savingThrows;
     }
@@ -79,7 +92,7 @@ class Classes
         return $this;
     }
 
-    public function getStartingEquipment()
+    public function getStartingEquipment(): array
     {
         return $this->startingEquipment;
     }
@@ -90,7 +103,7 @@ class Classes
         return $this;
     }
 
-    public function getStartingEquipmentOptions()
+    public function getStartingEquipmentOptions(): array
     {
         return $this->startingEquipmentOptions;
     }
@@ -100,8 +113,9 @@ class Classes
         $this->startingEquipmentOptions = $startingEquipmentOptions;
         return $this;
     }
-
-    public function getClassLevels()
+    
+    //returns the url only
+    public function getClassLevels(): string
     {
         return $this->classLevels;
     }
@@ -112,7 +126,7 @@ class Classes
         return $this;
     }
 
-    public function getMultiClassing()
+    public function getMultiClassing(): array
     {
         return $this->multiClassing;
     }
@@ -123,7 +137,7 @@ class Classes
         return $this;
     }
 
-    public function getSubclasses()
+    public function getSubclasses(): array
     {
         return $this->subclasses;
     }
@@ -134,53 +148,50 @@ class Classes
         return $this;
     }
 
-    public function getSpellcasting()
+    public function getSpellcasting(): array
     {
         $completeSpellcasting = $this->spellcasting;
-        if ($completeSpellcasting == null) {
-            return $completeSpellcasting;
-        }
-        
+
         if ($this->getIndex() == 'bard') {
             $completeSpellcasting['cantripsKnown'] = 2;
             $completeSpellcasting['spellsKnown'] = 4;
             $completeSpellcasting['spellSlots'] = 2;
         }
-        //spells known = cleric level + Wisdom modifier (minimum of 1)
+        // spells known = cleric level + Wisdom modifier (minimum of 1)
         if ($this->getIndex() == 'cleric') {
             $completeSpellcasting['cantripsKnown'] = 3;
             $completeSpellcasting['spellsKnown'] = 1;
             $completeSpellcasting['spellSlots'] = 2;
         }
-        //spells known = druid level + Wisdom modifier (minimum of 1)
+        // spells known = druid level + Wisdom modifier (minimum of 1)
         if ($this->getIndex() == 'druid') {
             $completeSpellcasting['cantripsKnown'] = 2;
             $completeSpellcasting['spellsKnown'] = 1;
             $completeSpellcasting['spellSlots'] = 2;
         }
-        
+
         if ($this->getIndex() == 'sorcerer') {
             $completeSpellcasting['cantripsKnown'] = 4;
             $completeSpellcasting['spellsKnown'] = 2;
             $completeSpellcasting['spellSlots'] = 2;
         }
-        
+
         if ($this->getIndex() == 'warlock') {
             $completeSpellcasting['cantripsKnown'] = 2;
             $completeSpellcasting['spellsKnown'] = 2;
             $completeSpellcasting['spellSlots'] = 1;
         }
-        
+
         if ($this->getIndex() == 'wizard') {
             $completeSpellcasting['cantripsKnown'] = 3;
             $completeSpellcasting['spellsKnown'] = 6;
             $completeSpellcasting['spellSlots'] = 2;
         }
-        
+
         return $completeSpellcasting;
     }
-    
-    public function getSimpleSpellcasting()
+
+    public function getSimpleSpellcasting(): array
     {
         return $this->spellcasting;
     }
@@ -191,12 +202,9 @@ class Classes
         return $this;
     }
 
-    public function getSpells()
+    public function getSpells(): array
     {
         $completeSpells = $this->spells;
-        if ($completeSpells == null) {
-            return $completeSpells;
-        }
         $spellClass = new Spells();
         $newSpell = [];
         foreach ($completeSpells as $value) {
@@ -224,17 +232,16 @@ class Classes
         }
         return $newSpell;
     }
-    
-    public function getSimpleSpells()
+
+    public function getSimpleSpells(): array
     {
         return $this->spells;
     }
-    
+
     public function setSpells($spells)
     {
         $this->spells = $spells;
         return $this;
     }
-
 }
 
